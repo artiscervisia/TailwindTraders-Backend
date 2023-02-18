@@ -87,6 +87,7 @@ Push-Location $($MyInvocation.InvocationName | Split-Path)
 Write-Host "before ttsapathassignment"
 $ttsaPath=$(./Join-Path-Recursively.ps1 -pathParts ..,helm,ttsa.yaml)
 Write-Host "$ttsaPath $namespace"
+cat $ttsaPath
 if ([string]::IsNullOrEmpty($namespace)) {
     kubectl apply -f $ttsaPath
 }
