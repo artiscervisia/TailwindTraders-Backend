@@ -82,9 +82,11 @@ else {
 }
 
 Write-Host "Deploying ServiceAccount ttsa" -ForegroundColor Yellow
-
+Write-Host "85"
 Push-Location $($MyInvocation.InvocationName | Split-Path)
+Write-Host "before ttsapathassignment"
 $ttsaPath=$(./Join-Path-Recursively.ps1 -pathParts ..,helm,ttsa.yaml)
+Write-Host "$ttsaPath $namespace"
 if ([string]::IsNullOrEmpty($namespace)) {
     kubectl apply -f $ttsaPath
 }
