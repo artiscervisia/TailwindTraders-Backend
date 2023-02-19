@@ -82,16 +82,21 @@ else {
 }
 
 Write-Host "Deploying ServiceAccount ttsa" -ForegroundColor Yellow
-Write-Host "85"
+Write-Host "##DEBUG -- Line 85"
 Push-Location $($MyInvocation.InvocationName | Split-Path)
-Write-Host "before ttsapathassignment"
+Write-Host "##DEBUG -- Line 87 before ttsapathassignment"
 $ttsaPath=$(./Join-Path-Recursively.ps1 -pathParts ..,helm,ttsa.yaml)
-Write-Host "$ttsaPath $namespace"
+Write-Host "##DEBUG ttsaPath: $ttsaPath namespace: $namespace"
+Write-Host "##DEBUG: "
 cat $ttsaPath
+Write-Host "##DEBUG "
 if ([string]::IsNullOrEmpty($namespace)) {
+Write-Host "##DEBUG -- inside if statement "
+Write-Host " "
     kubectl apply -f $ttsaPath
 }
 else {
+Write-Host "##DEBUG - else statement"
     kubectl apply -f $ttsaPath -n $namespace
 }
 Pop-Location
