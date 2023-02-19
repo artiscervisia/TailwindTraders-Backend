@@ -81,7 +81,7 @@ else {
     exit 1
 }
 
-Write-Host "Deploying ServiceAccount ttsa" -ForegroundColor Yellow
+<#Write-Host "Deploying ServiceAccount ttsa" -ForegroundColor Yellow
 Write-Host "##DEBUG -- Line 85"
 Push-Location $($MyInvocation.InvocationName | Split-Path)
 Write-Host "##DEBUG -- Line 87 before ttsapathassignment"
@@ -99,4 +99,5 @@ else {
 Write-Host "##DEBUG - else statement"
     kubectl apply -f $ttsaPath -n $namespace
 }
+#>
 Pop-Location
